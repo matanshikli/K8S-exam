@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: use-pvspec-matanshikli
+  labels:
+    run: use-pv
+spec:
+  containers:
+  - name: use-pv
+    image: nginx
+    volumeMounts:
+    - name: pv-storage
+      mountPath: /data
+  volumes:
+  - name: pv-storage
+    persistentVolumeClaim:
+      claimName: pv-1-claim
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
